@@ -39,7 +39,13 @@ function InvoiceRegistryController(Invoices, bhConstants, Notify, Session, util,
         headerCellFilter: 'translate',
         aggregationType: uiGridConstants.aggregationTypes.count
       },
-      { field : 'date', cellFilter:'date', displayName : 'TABLE.COLUMNS.BILLING_DATE', headerCellFilter : 'translate' },
+      {
+        field : 'date',
+        cellFilter:'date',
+        displayName : 'TABLE.COLUMNS.BILLING_DATE',
+        headerCellFilter : 'translate',
+        sort : { priority : 0, direction : 'desc'}
+      },
       { field : 'patientName', displayName : 'TABLE.COLUMNS.PATIENT', headerCellFilter : 'translate' },
       { field : 'cost',
         displayName : 'TABLE.COLUMNS.COST',
@@ -79,7 +85,7 @@ function InvoiceRegistryController(Invoices, bhConstants, Notify, Session, util,
     }
 
     // if we have search parameters, use search.  Otherwise, just read all
-    // invoices.    
+    // invoices.
     var request = angular.isDefined(parameters) ?
       Invoices.search(parameters) :
       Invoices.read();
